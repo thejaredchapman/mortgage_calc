@@ -3,15 +3,18 @@ import pprint
 import pandas as pd 
 from pandas.io.json._table_schema import build_table_schema
 
-
+#TODO(Update api_key with usable rest_api)
+api_key = []
+api_host = []
+location = []
 
 url = "https://zillow56.p.rapidapi.com/search"
 
-querystring = {"location":"chicago, il"}
+querystring = {"location":"{location}"}
 
 headers = {
-	"X-RapidAPI-Key": "9202cb6d35msh267f818513d4c85p1364fdjsn3cbef17f0867",
-	"X-RapidAPI-Host": "zillow56.p.rapidapi.com"
+	"X-RapidAPI-Key": api_key,
+	"X-RapidAPI-Host": api_host
 }
 
 response = requests.get(url, headers=headers, params=querystring)
