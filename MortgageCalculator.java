@@ -26,15 +26,26 @@ public class MortgageCalculator {
 		
 		float monthlyInterestRate  = annualInterestRate / MONTHS_IN_A_YEAR / 100;
 		int numberOfPayments = termInYears * MONTHS_IN_A_YEAR;
-		
+	
         double mathPower = Math.pow(1 * annualInterestRate , numberOfPayments);
 		double monthlyPayment = principal * (monthlyInterestRate * mathPower / (mathPower - 1));
         double totalPaybackAmount = monthlyPayment * numberOfPayments;
 
+		float monthlywithoutIntrest = monthlyInterestRate / annualInterestRate;
+		// need to convert or cast  into double
+		// double numberofPaymentNoIntrest = double numberOfPayments;
+		// double mathPowerNoIntrest = Math.pow double(numberOfPayments);
+		double monthlyPaymentNoIntrest = principal * (monthlywithoutIntrest * mathPowerNoIntrest / (mathPowerNoIntrest - 1));
+		double totalPaybackAmountWithoutIntrest = monthlyPaymentNoIntrest * numberOfPayments;
+
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
         //Numberformat.getPercentInstance(val);
-		System.out.println("Total payback amount: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
+		System.out.println("Total payback amount or Amoritization: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
+
+		System.out.println("Monthly payment without Intrest Rate: "+ NumberFormat.getCurrencyInstance().format(monthlyPaymentNoIntrest));
+        //Numberformat.getPercentInstance(val);
+		System.out.println("Total payback amount: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmountWithoutIntrest));
 	}
 
 }
