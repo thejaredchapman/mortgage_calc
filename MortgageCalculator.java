@@ -45,8 +45,10 @@ public class MortgageCalculator {
 
 		//calculatePayment (String[] args) {
 		//	for the duration of the loan term
-		//  remainder = principal - monthlyPayment
-			newPayment = remainder *  monthlyInterestRate 
+		//  while remainder = principal - monthlyPayment
+		//	newPayment = remainder *  monthlyInterestRate 
+		//	return newPayment
+
 			
 		//}
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
