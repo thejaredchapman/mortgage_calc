@@ -14,25 +14,38 @@ public class MortgageCalculator {
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter the listing price amount:");
-		float listingPrice = scanner.nextFloat();
+		double listingPrice = scanner.nextFloat();
 
         System.out.println("Enter the down payment amount in $:");
-        float downPayment = scanner.nextFloat();
+        double downPayment = scanner.nextFloat();
 		
 		System.out.println("Enter the annual interest rate:");
-		float annualInterestRate = scanner.nextFloat();
+		double annualInterestRate = scanner.nextFloat();
         scanner.close();
 
-        float principal = listingPrice - downPayment;
+        double principal = listingPrice - downPayment;
 		
-		float monthlyInterestRate  = annualInterestRate / MONTHS_IN_A_YEAR / 100;
+		double monthlyInterestRate  = annualInterestRate / MONTHS_IN_A_YEAR / 100;
 		
 		// MORTGAGE PAYMENT CALCULATION
-        double mathPower = Math.pow(1 * annualInterestRate , TOTAL_PAYMENTS);
-		double monthlyPayment = principal * (monthlyInterestRate * mathPower / (mathPower - 1));
-        double totalPaybackAmount = monthlyPayment * TOTAL_PAYMENTS;
+        //double mathPower = Math.pow(1 * annualInterestRate , TOTAL_PAYMENTS);
+		//double monthlyPayment = principal * (monthlyInterestRate * mathPower / (mathPower - 1));
+        
 
-		float monthlywithoutIntrest = monthlyInterestRate / annualInterestRate;
+		double monthlywithoutIntrest = monthlyInterestRate / annualInterestRate;
+
+		double P = principal;
+		double t = DEFAULT_TERM;
+		double n = MONTHS_IN_A_YEAR;
+		double r = annualInterestRate/100;
+		double monthlyPayment = (P * (r/n))/(1 - Math.pow((1+r/n),(-1*n*t)));
+
+		double totalPaybackAmount = monthlyPayment * TOTAL_PAYMENTS;
+
+
+
+
+
 		// need to convert or cast  into double
 		
 		// PRINCIPAL - MORTGAGE PAYMENT WITHOUT INTEREST
@@ -53,19 +66,18 @@ public class MortgageCalculator {
 		// then save entries into hashmap
 		// use java.util.Date to enum Month & Year for ID
 		// then get it to show in graph form
-		while (principal > 0)
-    {	
-        remainingMonths( num - 1 );
-        System.out.println(num);
-        num = num - 1;           // Decrementing the value of num by 1
-    }  
+		//	while (principal > 0)
+    	//{	
+    //    remainingMonths( num - 1 );
+     //   System.out.println(num);
+     //   num = num - 1;           // Decrementing the value of num by 1
+    //}  
 
 			
 		//}
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
         //Numberformat.getPercentInstance(val);
-		System.out.println("Total payback amount or Amoritization: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
 
 		System.out.println("Your remaining principal balance is " + NumberFormat.getCurrencyInstance().format(remainingPrincipal));
 		System.out.println("Your remaining interest for your loan is " + NumberFormat.getCurrencyInstance().format(remainingInterest));
