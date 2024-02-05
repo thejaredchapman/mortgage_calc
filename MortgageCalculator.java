@@ -46,8 +46,19 @@ public class MortgageCalculator {
 		//calculatePayment (String[] args) {
 		//	for the duration of the loan term
 		//  while remainder = principal - monthlyPayment
+		//  monthlyPayment = newPayment
 		//	newPayment = remainder *  monthlyInterestRate 
 		//	return newPayment
+		// write recursively to return itself until duration
+		// then save entries into hashmap
+		// use java.util.Date to enum Month & Year for ID
+		// then get it to show in graph form
+		while (principal > 0)
+    {	
+        remainingMonths( num - 1 );
+        System.out.println(num);
+        num = num - 1;           // Decrementing the value of num by 1
+    }  
 
 			
 		//}
