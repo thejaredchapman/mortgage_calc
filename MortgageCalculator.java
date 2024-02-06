@@ -3,12 +3,24 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class MortgageCalculator {
+
+	public class ValueTracker{
+	
+		public double interestAtCurrentMonth;
+		public double principalAtCurrentMonth;
+
+		public ValueTracker(double interestAtCurrentMonth, double principalAtCurrentMonth) {
+			this.interestAtCurrentMonth = interestAtCurrentMonth;
+			this.principalAtCurrentMonth = principalAtCurrentMonth;
+		}
+	}
+	
 	 
 	private static final int MONTHS_IN_A_YEAR = 12;
 	private static final int DEFAULT_TERM = 30;
 	private static final int TOTAL_PAYMENTS = 360;
 
-	HashMap<String, Double> paymentStructure = new HashMap<String, Double>();
+	HashMap<Integer, ValueTracker> paymentStructure = new HashMap<Integer, ValueTracker>();
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
