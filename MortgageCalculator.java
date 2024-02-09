@@ -14,8 +14,7 @@ public class MortgageCalculator {
 			this.principalAtCurrentMonth = principalAtCurrentMonth;
 		}
 	}
-	
-	 
+		 
 	private static final int MONTHS_IN_A_YEAR = 12;
 	private static final int DEFAULT_TERM = 30;
 	private static final int TOTAL_PAYMENTS = 360;
@@ -43,9 +42,6 @@ public class MortgageCalculator {
         //double mathPower = Math.pow(1 * annualInterestRate , TOTAL_PAYMENTS);
 		//double monthlyPayment = principal * (monthlyInterestRate * mathPower / (mathPower - 1));
         
-
-		double monthlywithoutIntrest = monthlyInterestRate / annualInterestRate;
-
 		double P = principal;
 		double t = DEFAULT_TERM;
 		double n = MONTHS_IN_A_YEAR;
@@ -55,18 +51,15 @@ public class MortgageCalculator {
 		double totalPaybackAmount = monthlyPayment * TOTAL_PAYMENTS;
 
 
-
-
-
-		// need to convert or cast  into double
 		
+
+
 		// PRINCIPAL - MORTGAGE PAYMENT WITHOUT INTEREST
 
-		double mathPowerNoIntrest = Math.pow(1.0, TOTAL_PAYMENTS);
-		double monthlyPaymentNoIntrest = principal * (monthlywithoutIntrest * mathPowerNoIntrest / (mathPowerNoIntrest - 1));
+		double principalNoInterest = (P * (r/n)/r)/(1 - Math.pow((1+(r/n)/r),(-1*n*t)));
+		double monthlyPaymentNoIntrest = principalNoInterest / 12;
 		double remainingPrincipal = monthlyPaymentNoIntrest * TOTAL_PAYMENTS;
 
-		double remainingInterest = totalPaybackAmount - remainingPrincipal;
 
 		//calculatePayment (String[] args) {
 		//	for the duration of the loan term
@@ -90,10 +83,7 @@ public class MortgageCalculator {
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
         //Numberformat.getPercentInstance(val);
-
-		System.out.println("Your remaining principal balance is " + NumberFormat.getCurrencyInstance().format(remainingPrincipal));
-		System.out.println("Your remaining interest for your loan is " + NumberFormat.getCurrencyInstance().format(remainingInterest));
-		System.out.println("Monthly payment without Inerest Rate: "+ NumberFormat.getCurrencyInstance().format(monthlyPaymentNoIntrest));
+		System.out.println("Monthly payment without interest Rate: "+ NumberFormat.getCurrencyInstance().format(monthlyPaymentNoIntrest));
         //Numberformat.getPercentInstance(val);
 		System.out.println("Total payback amount or Amoritzation: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
 	}
