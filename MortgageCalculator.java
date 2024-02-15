@@ -36,12 +36,7 @@ public class MortgageCalculator {
 
         double principal = listingPrice - downPayment;
 		
-		double monthlyInterestRate  = annualInterestRate / MONTHS_IN_A_YEAR / 100;
-		
-		// MORTGAGE PAYMENT CALCULATION
-        //double mathPower = Math.pow(1 * annualInterestRate , TOTAL_PAYMENTS);
-		//double monthlyPayment = principal * (monthlyInterestRate * mathPower / (mathPower - 1));
-        
+    
 		double P = principal;
 		double t = DEFAULT_TERM;
 		double n = MONTHS_IN_A_YEAR;
@@ -50,7 +45,17 @@ public class MortgageCalculator {
 
 		double totalPaybackAmount = monthlyPayment * TOTAL_PAYMENTS;
 
+		double totalInterest = 0;
+		double currentPrincipal = P;
 
+		for (int i=0; i<2; i++) {
+			double monthlyInterest = currentPrincipal * (r/n);
+			System.out.println("this is the "+ monthlyInterest);
+			double monthlyPrincipal = monthlyPayment - monthlyInterest;
+			System.out.println("this is the "+ monthlyPrincipal);
+			totalInterest += monthlyInterest;
+		}
+		
 		
 
 
@@ -60,26 +65,8 @@ public class MortgageCalculator {
 		double monthlyPaymentNoIntrest = principalNoInterest / 12;
 		double remainingPrincipal = monthlyPaymentNoIntrest * TOTAL_PAYMENTS;
 
-
-		//calculatePayment (String[] args) {
-		//	for the duration of the loan term
-		//  while remainder = principal - monthlyPayment
-		//  monthlyPayment = newPayment
-		//	newPayment = remainder *  monthlyInterestRate 
-		//	return newPayment
-		// write recursively to return itself until duration
-		// then save entries into hashmap
-		// use java.util.Date to enum Month & Year for ID
-		// then get it to show in graph form
-		//	while (principal > 0)
-    	//{	
-    //    remainingMonths( num - 1 );
-     //   System.out.println(num);
-     //   num = num - 1;           // Decrementing the value of num by 1
-    //}  
-
-			
-		//}
+		System.out.println();
+		System.out.println("Your principal is " + NumberFormat.getCurrencyInstance().format(principal));
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
         //Numberformat.getPercentInstance(val);
