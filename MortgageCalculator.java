@@ -1,25 +1,33 @@
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MortgageCalculator {
 
-	public class ValueTracker{
+
+	public static class ValueTracker{
 	
 		public double interestAtCurrentMonth;
 		public double principalAtCurrentMonth;
+		public double totalInterest;
+		public double totalPrincipal;
 
-		public ValueTracker(double interestAtCurrentMonth, double principalAtCurrentMonth) {
+		public ValueTracker(double interestAtCurrentMonth, double principalAtCurrentMonth, 
+				double totalInterest, double totalPrincipal) {
 			this.interestAtCurrentMonth = interestAtCurrentMonth;
 			this.principalAtCurrentMonth = principalAtCurrentMonth;
+			this.totalInterest = totalInterest;
+			this.totalPrincipal = totalPrincipal;
 		}
+		@Override
+		public String toString()
 	}
 		 
 	private static final int MONTHS_IN_A_YEAR = 12;
-	private static final int DEFAULT_TERM = 30;
-	private static final int TOTAL_PAYMENTS = 360;
+	private static final int DEFAULT_TERM = 15;
+	private static final int TOTAL_PAYMENTS = 180;
 
-	HashMap<Integer, ValueTracker> paymentStructure = new HashMap<Integer, ValueTracker>();
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
@@ -48,12 +56,17 @@ public class MortgageCalculator {
 		double totalInterest = 0;
 		double currentPrincipal = P;
 
-		for (int i=0; i<2; i++) {
+		ArrayList<ValueTracker>  paymentsMade = new ArrayList<ValueTracker>();
+
+		for (int i=0; i<180; i++) {
 			double monthlyInterest = currentPrincipal * (r/n);
-			System.out.println("this is the "+ monthlyInterest);
 			double monthlyPrincipal = monthlyPayment - monthlyInterest;
-			System.out.println("this is the "+ monthlyPrincipal);
 			totalInterest += monthlyInterest;
+			currentPrincipal -= monthlyPrincipal;
+	
+			ValueTracker ve = new ValueTracker(monthlyInterest, monthlyPrincipal, totalInterest, currentPrincipal);
+			paymentsMade.add(ve);
+			String output = ve.toString();
 		}
 		
 		
@@ -61,18 +74,11 @@ public class MortgageCalculator {
 
 		// PRINCIPAL - MORTGAGE PAYMENT WITHOUT INTEREST
 
-		double principalNoInterest = (P * (r/n)/r)/(1 - Math.pow((1+(r/n)/r),(-1*n*t)));
-		double monthlyPaymentNoIntrest = principalNoInterest / 12;
-		double remainingPrincipal = monthlyPaymentNoIntrest * TOTAL_PAYMENTS;
-
-		System.out.println();
-		System.out.println("Your principal is " + NumberFormat.getCurrencyInstance().format(principal));
+		System.out.println("Your principal is " + NumberFormat.getCurrencyInstance().format(currentPrincipal));
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
-        //Numberformat.getPercentInstance(val);
-		System.out.println("Monthly payment without interest Rate: "+ NumberFormat.getCurrencyInstance().format(monthlyPaymentNoIntrest));
-        //Numberformat.getPercentInstance(val);
 		System.out.println("Total payback amount or Amoritzation: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
+		System.out.println(paymentsMade);
 	}
 
 }
