@@ -20,8 +20,15 @@ public class MortgageCalculator {
 			this.totalInterest = totalInterest;
 			this.totalPrincipal = totalPrincipal;
 		}
-		@Override
-		public String toString()
+		
+		public double getInterestAtCurrentMonth(){
+			return interestAtCurrentMonth;
+		}
+
+		public String toString(){
+			return String.format("This will return the interest at current month %f this is the %f, this is the %f, and this is the %f\n", interestAtCurrentMonth, principalAtCurrentMonth, totalInterest, totalPrincipal);
+			
+		}
 	}
 		 
 	private static final int MONTHS_IN_A_YEAR = 12;
@@ -29,7 +36,14 @@ public class MortgageCalculator {
 	private static final int TOTAL_PAYMENTS = 180;
 
 	public static void main(String[] args) {
+
 		
+
+		ValueTracker valueT = new ValueTracker(DEFAULT_TERM, TOTAL_PAYMENTS, MONTHS_IN_A_YEAR, DEFAULT_TERM); 
+
+		valueT.getInterestAtCurrentMonth();
+		System.out.println(valueT.toString());
+
 		Scanner scanner = new Scanner(System.in);
 		
 		System.out.println("Enter the listing price amount:");
@@ -74,7 +88,7 @@ public class MortgageCalculator {
 
 		// PRINCIPAL - MORTGAGE PAYMENT WITHOUT INTEREST
 
-		System.out.println("Your principal is " + NumberFormat.getCurrencyInstance().format(currentPrincipal));
+		System.out.println("Your principal is " + NumberFormat.getCurrencyInstance().format(principal));
 		System.out.println("Monthly payment: "+ NumberFormat.getCurrencyInstance().format(monthlyPayment));
 		System.out.println("Your annual interest rate is " + annualInterestRate);
 		System.out.println("Total payback amount or Amoritzation: " + NumberFormat.getCurrencyInstance().format(totalPaybackAmount));
