@@ -4,33 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MortgageCalculator {
-
-	public static class ValueTracker{
-	
-		public double interestAtCurrentMonth;
-		public double principalAtCurrentMonth;
-		public double totalInterest;
-		public double totalPrincipal;
-		public String date;
-
-		public ValueTracker(String date, double interestAtCurrentMonth, double principalAtCurrentMonth, 
-				double totalInterest, double totalPrincipal) {
-			this.date = date;
-			this.interestAtCurrentMonth = interestAtCurrentMonth;
-			this.principalAtCurrentMonth = principalAtCurrentMonth;
-			this.totalInterest = totalInterest;
-			this.totalPrincipal = totalPrincipal;
-		}
-		
-		public double getInterestAtCurrentMonth(){
-			return interestAtCurrentMonth;
-		}
-
-		public String toString(){
-			return String.format("This will return the interest at current month %f this is the %f, this is the %f, and this is the %f\n", interestAtCurrentMonth, principalAtCurrentMonth, totalInterest, totalPrincipal);	
-		}
-	}
-		 
+	 
 	private static final int MONTHS_IN_A_YEAR = 12;
 	private static final int DEFAULT_TERM = 30;
 	private static final int TOTAL_PAYMENTS = 360;
