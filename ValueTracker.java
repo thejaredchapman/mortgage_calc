@@ -37,5 +37,7 @@ final class ValueTracker{
 		public String toString(){
 			return String.format("This will return the interest at current month %f this is the %f, this is the %f, and this is the %f\n", interestAtCurrentMonth, principalAtCurrentMonth, totalInterest, totalPrincipal);	
 		}
+
 	}
+
 

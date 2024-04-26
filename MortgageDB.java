@@ -1,4 +1,20 @@
-import java.sql.SQLException;
+import java.sql.Connection;
+import java.security.spec.ECField;
+import java.sql.DriverManager;
+
+public class MortgageDB {
+    public Connection connect_to_db(){
+        Connection = conn=null;
+        try{
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:")
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+
+/*import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -24,6 +40,8 @@ public class MortgageDB {
    } catch (SQLException e) {
        e.printStackTrace();
    }
+   
+
 }}
 
 
@@ -40,3 +58,4 @@ public class MortgageDB {
 //          TOTALPRINCIPAL VARCHAR(30),
 //          PRIMARY KEY (ID)
 //  )
+*/
