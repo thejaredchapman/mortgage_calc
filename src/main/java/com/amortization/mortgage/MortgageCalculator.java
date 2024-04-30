@@ -1,3 +1,5 @@
+package com.amortization.mortgage;
+
 import java.text.NumberFormat;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,12 +10,16 @@ public class MortgageCalculator {
 	private static final int MONTHS_IN_A_YEAR = 12;
 	private static final int DEFAULT_TERM = 30;
 	private static final int TOTAL_PAYMENTS = 360;
+	private static String myUser;
+	private static String email;
+	private static Integer id;
+	
 
 	public static void main(String[] args) {
 
-		Calendar date = Calendar.getInstance();
+		Calendar paymentPeroid = Calendar.getInstance();
 
-		ValueTracker valueT = new ValueTracker(date.getTime().toString(), DEFAULT_TERM, TOTAL_PAYMENTS, MONTHS_IN_A_YEAR, DEFAULT_TERM); 
+		ValueTracker valueT = new ValueTracker(id ,myUser ,email , paymentPeroid, DEFAULT_TERM, TOTAL_PAYMENTS, MONTHS_IN_A_YEAR, DEFAULT_TERM); 
 		
 		valueT.getInterestAtCurrentMonth();
 		System.out.println(valueT.toString());
@@ -51,7 +57,7 @@ public class MortgageCalculator {
 			totalInterest += monthlyInterest;
 			currentPrincipal -= monthlyPrincipal;
 	
-			ValueTracker ve = new ValueTracker(date.getTime().toString(), monthlyInterest, monthlyPrincipal, totalInterest, currentPrincipal);
+			ValueTracker ve = new ValueTracker(id, myUser,email, paymentperiod, monthlyInterest, monthlyPrincipal, totalInterest, currentPrincipal);
 			paymentsMade.add(ve);
 			
 			String output = ve.toString();

@@ -1,22 +1,43 @@
+package com.amortization.mortgage;
+
+import java.util.Calendar;
+
 final class ValueTracker{
 	
+ 		Integer id;
+		public String myUser;
+		public String email;
 		public double interestAtCurrentMonth;
 		public double principalAtCurrentMonth;
 		public double totalInterest;
 		public double totalPrincipal;
-		public String date;
+		public String paymentPeroid;
 
-		public ValueTracker(String date, double interestAtCurrentMonth, double principalAtCurrentMonth, 
+		public ValueTracker(Integer id, String myUser, String email, Calendar paymentPeroid, double interestAtCurrentMonth, double principalAtCurrentMonth, 
 				double totalInterest, double totalPrincipal) {
-			this.date = date;
+
+			this.id = id;
+			this.myUser = myUser;
+			this.email = email;
 			this.interestAtCurrentMonth = interestAtCurrentMonth;
 			this.principalAtCurrentMonth = principalAtCurrentMonth;
 			this.totalInterest = totalInterest;
 			this.totalPrincipal = totalPrincipal;
 		}
-		
-		public String getDate(){
-			return date;
+		public int getId(){
+			return id;
+		}
+
+		public String getMyUser(){
+			return myUser;
+		}
+
+		public String getEmail(){
+			return email;
+		}
+
+		public String getPaymentPeroid(){
+			return paymentPeroid;
 		}
 		public double getInterestAtCurrentMonth(){
 			return interestAtCurrentMonth;
