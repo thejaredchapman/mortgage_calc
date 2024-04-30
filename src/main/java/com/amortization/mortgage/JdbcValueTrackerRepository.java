@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JdbcValueTrackerRepository extends ValueTrackerRepository {
+public class JdbcValueTrackerRepository implements ValueTrackerRepository {
 
     private final JdbcClient jdbcClient;
 

@@ -13,13 +13,12 @@ public class MortgageCalculator {
 	private static String myUser;
 	private static String email;
 	private static Integer id;
-	
+	private static Calendar paymentPeriod;
 
 	public static void main(String[] args) {
 
-		Calendar paymentPeroid = Calendar.getInstance();
 
-		ValueTracker valueT = new ValueTracker(id ,myUser ,email , paymentPeroid, DEFAULT_TERM, TOTAL_PAYMENTS, MONTHS_IN_A_YEAR, DEFAULT_TERM); 
+		ValueTracker valueT = new ValueTracker(id ,myUser ,email ,paymentPeriod, DEFAULT_TERM, TOTAL_PAYMENTS, MONTHS_IN_A_YEAR, DEFAULT_TERM); 
 		
 		valueT.getInterestAtCurrentMonth();
 		System.out.println(valueT.toString());
@@ -57,7 +56,7 @@ public class MortgageCalculator {
 			totalInterest += monthlyInterest;
 			currentPrincipal -= monthlyPrincipal;
 	
-			ValueTracker ve = new ValueTracker(id, myUser,email, paymentperiod, monthlyInterest, monthlyPrincipal, totalInterest, currentPrincipal);
+			ValueTracker ve = new ValueTracker(id, myUser,email, paymentPeriod, monthlyInterest, monthlyPrincipal, totalInterest, currentPrincipal);
 			paymentsMade.add(ve);
 			
 			String output = ve.toString();
