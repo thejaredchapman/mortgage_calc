@@ -23,14 +23,14 @@ public class JdbcValueTrackerRepository implements ValueTrackerRepository {
     }
 
     public Optional<ValueTracker> findById(Integer id) {
-        return jdbcClient.sql("SELECT id,date,interestAtCurrentMonth,principalAtCurrentMonth,totalInterest,totalPrincipal FROM ValueTracker WHERE id = :id" )
+        return jdbcClient.sql("SELECT id, myUser, email, date,interestAtCurrentMonth,principalAtCurrentMonth,totalInterest,totalPrincipal FROM ValueTracker WHERE id = :id" )
                 .param("id", id)
                 .query(ValueTracker.class)
                 .optional();
     }
 
     public void create(ValueTracker valueTracker) {
-        var updated = jdbcClient.sql("INSERT INTO Run(id,title,started_on,completed_on,miles,location) values(?,?,?,?,?,?)")
+        var updated = jdbcClient.sql("INSERT INTO Mortgage(id,myUser, email, date,interestAtCurrentMonth,principalAtCurrentMonth,totalInterest,totalPrincipal) values(?,?,?,?,?,?)")
                 .params(List.of(valueTracker.getId(),valueTracker.getMyUser(),valueTracker.getEmail(),valueTracker.getPaymentPeroid(),valueTracker.getInterestAtCurrentMonth(),valueTracker.getPrincipaltAtCurrentMonth(),valueTracker.getTotalInterest(),valueTracker.getTotalPrincipal()).toString())
                 .update();
 

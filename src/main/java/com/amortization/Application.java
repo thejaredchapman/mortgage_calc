@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.amortization.mortgage.ValueTrackers;
+
 @SpringBootApplication
 public class Application {
 
@@ -18,14 +20,13 @@ public class Application {
 
 	};
 
-	/*@Bean
+	@Bean
 	CommandLineRunner ValueTracker() {
 		return args -> {
-			ValueTracker ValueTracker = new ValueTracker(id, myUser, email, paymentPeroid, interestAtCurrentMonth, principalAtCurrentMonth, 
-			double totalInterest, double totalPrincipal);
+			ValueTrackers ValueTracker = new ValueTracker (id, myUser, email, date,interestAtCurrentMonth,principalAtCurrentMonth,totalInterest,totalPrincipal);
 			log.info("ValueTracker: " + ValueTracker + "added.");
 
 		};
 	}
-	*/
+	
 }

@@ -21,7 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 @RestController
-@RequestMapping("/api/runs")
+@RequestMapping("/api/mortgages")
 class ValueTrackerController {
     
     private final JdbcValueTrackerRepository valueTrackerRepository;

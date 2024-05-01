@@ -11,7 +11,7 @@ final class ValueTracker{
 		public double principalAtCurrentMonth;
 		public double totalInterest;
 		public double totalPrincipal;
-		public String paymentPeroid;
+		public Calendar paymentPeriod;
 
 		public ValueTracker(Integer id, String myUser, String email, Calendar paymentPeroid, double interestAtCurrentMonth, double principalAtCurrentMonth, 
 				double totalInterest, double totalPrincipal) {
@@ -36,8 +36,8 @@ final class ValueTracker{
 			return email;
 		}
 
-		public String getPaymentPeroid(){
-			return paymentPeroid;
+		public Calendar getPaymentPeriod(){
+			return paymentPeriod;
 		}
 		public double getInterestAtCurrentMonth(){
 			return interestAtCurrentMonth;
